@@ -102,6 +102,7 @@ services:
       HISTORY_MAX_MIN: "120"
 
     volumes:
+      - ./:/app
       # Host visibility (optional)
       - /sys:/sys:ro
       - /:/host:ro
