@@ -1,4 +1,16 @@
-# ArgusSyS — lightweight system stats dashboard
+<div align="center">
+  <h1>ArgusSyS — lightweight system stats dashboard</h1>
+</div>
+
+<details>
+  <summary><strong>📸 Screenshot</strong></summary>
+  <br>
+
+  <p align="center">
+    <img src="https://github.com/user-attachments/assets/77b389c2-52a9-4e6a-a00c-56efa51d4330" width="100%">
+  </p>
+
+</details>
 
 ArgusSyS is a small **Node.js** service that:
 
