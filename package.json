@@ -1,0 +1,13 @@
+{
+  "name": "argussys",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node -r dotenv/config stats-api.js",
+    "dev": "node --watch -r dotenv/config stats-api.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}

@@ -1,0 +1,1054 @@
+<!-- /ui/index.html -->
+
+<!doctype html>
+<html lang="en" data-default-lang="en">
+<head>
+  <!-- Meta / SEO -->
+  <meta charset="utf-8" />
+  <meta name="app-version" content="v1.0.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Title -->
+  <title>argusSyS</title>
+
+  <!-- Disable auto-translate -->
+  <meta name="google" content="notranslate" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/img/favicon.svg?v=20260204" type="image/svg+xml" sizes="any" />
+</head>
+
+<body class="i18n-loading" translate="no">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+
+      <!-- Header: Logo + Status -->
+      <div class="header-logo">
+        <!-- Logo link -->
+        <a href="https://github.com/G-grbz" target="_blank" rel="noopener noreferrer">
+          <img
+            src="./img/logo.png"
+            alt="argusSyS Logo"
+            class="logo-img"
+          />
+        </a>
+
+        <!-- Connection / Status -->
+        <div class="status">
+          <div class="status-indicator" id="statusDot"></div>
+          <div class="status-text">
+            <div class="subtitle" id="subtitle">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header: Controls -->
+      <div class="controls">
+
+        <!-- Control: API URL -->
+        <div class="input-group stats">
+          <span class="input-icon">📡</span>
+          <input
+            type="text"
+            id="apiUrl"
+            class="input mono"
+            data-i18n-placeholder="controls.apiPlaceholder"
+            placeholder="http://192.168.1.29:3012/stats"
+          />
+        </div>
+
+        <!-- Control: Language select -->
+        <div class="input-group lang-group">
+          <div class="select-wrapper">
+            <select id="langSelect" class="input mono" aria-label="Language">
+              <option value="en">🇬🇧 EN</option>
+              <option value="tr">🇹🇷 TR</option>
+              <option value="de">🇩🇪 DE</option>
+            </select>
+            <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Control: History window select -->
+        <div class="input-group history-group">
+          <div class="select-wrapper">
+            <select
+              id="historySelect"
+              aria-label="History"
+              title="History window"
+              data-i18n-title="controls.historyTip"
+            >
+              <option value="1" data-i18n="controls.history.1m">1m</option>
+              <option value="5" data-i18n="controls.history.5m">5m</option>
+              <option value="10" data-i18n="controls.history.10m">10m</option>
+              <option value="15" data-i18n="controls.history.15m">15m</option>
+              <option value="30" data-i18n="controls.history.30m">30m</option>
+              <option value="60" data-i18n="controls.history.60m">60m</option>
+              <option value="90" data-i18n="controls.history.90m">90m</option>
+              <option value="120" data-i18n="controls.history.120m">120m</option>
+            </select>
+            <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Control: Refresh / Poll interval select -->
+        <div class="input-group history-group">
+          <div class="select-wrapper">
+            <select
+              id="pollSelect"
+              aria-label="Refresh"
+              title="Refresh interval"
+              data-i18n-title="controls.refreshTip"
+            >
+              <option value="0.25" data-i18n="controls.refresh.250ms">250ms</option>
+              <option value="0.5" data-i18n="controls.refresh.500ms">500ms</option>
+              <option value="1" data-i18n="controls.refresh.1s">1s</option>
+              <option value="2" data-i18n="controls.refresh.2s">2s</option>
+              <option value="3" data-i18n="controls.refresh.3s">3s</option>
+              <option value="4" data-i18n="controls.refresh.4s">4s</option>
+              <option value="5" data-i18n="controls.refresh.5s">5s</option>
+              <option value="6" data-i18n="controls.refresh.6s">6s</option>
+              <option value="7" data-i18n="controls.refresh.7s">7s</option>
+              <option value="8" data-i18n="controls.refresh.8s">8s</option>
+              <option value="9" data-i18n="controls.refresh.9s">9s</option>
+              <option value="10" data-i18n="controls.refresh.10s">10s</option>
+              <option value="11" data-i18n="controls.refresh.11s">11s</option>
+              <option value="12" data-i18n="controls.refresh.12s">12s</option>
+              <option value="13" data-i18n="controls.refresh.13s">13s</option>
+              <option value="14" data-i18n="controls.refresh.14s">14s</option>
+              <option value="15" data-i18n="controls.refresh.15s">15s</option>
+            </select>
+            <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Control: Action buttons -->
+        <button id="applyBtn" class="btn btn-primary" type="button"></button>
+        <button id="pauseBtn" class="btn" type="button"></button>
+        <button id="themeToggle" class="theme-toggle" aria-label="Theme" type="button"></button>
+
+        <!-- Control: Layout toggle -->
+        <button
+          id="layoutBtn"
+          class="btn layout-btn"
+          type="button"
+          aria-pressed="false"
+          data-i18n-title="layout.title"
+        >
+          <span class="layout-btn__icon" id="layoutBtnIcon" aria-hidden="true"></span>
+          <span class="layout-btn__text" id="layoutBtnTxt">Layout</span>
+        </button>
+
+        <!-- Control: Cards toggle button -->
+        <button
+          id="cardsBtn"
+          class="btn cards-btn"
+          type="button"
+          data-i18n-title="cards.title"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="cardsPanel"
+        >
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M2 12.6101H19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19 10.28V17.43C18.97 20.28 18.19 21 15.22 21H5.78003C2.76003 21 2 20.2501 2 17.2701V10.28C2 7.58005 2.63 6.71005 5 6.57005C5.24 6.56005 5.50003 6.55005 5.78003 6.55005H15.22C18.24 6.55005 19 7.30005 19 10.28Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M22 6.73V13.72C22 16.42 21.37 17.29 19 17.43V10.28C19 7.3 18.24 6.55 15.22 6.55H5.78003C5.50003 6.55 5.24 6.56 5 6.57C5.03 3.72 5.81003 3 8.78003 3H18.22C21.24 3 22 3.75 22 6.73Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M5.25 17.8101H6.96997" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9.10986 17.8101H12.5499" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="cards-btn__text" data-i18n="cards.title">Cards</span>
+        </button>
+
+        <!-- Panel: Cards visibility -->
+        <div id="cardsPanel" class="cards-panel is-hidden" role="dialog" aria-label="Cards">
+          <div class="cards-panel__title" data-i18n="cards.title">Cards</div>
+
+          <div class="cards-panel__grid">
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="summary" checked />
+              <span data-i18n="cards.summary">Summary</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="system" checked />
+              <span data-i18n="cards.system">System</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="cpu" checked />
+              <span data-i18n="cards.cpu">CPU</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="gpu" checked />
+              <span data-i18n="cards.gpu">GPU</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="ram" checked />
+              <span data-i18n="cards.ram">RAM</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="net" checked />
+              <span data-i18n="cards.net">Network</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="speedtest" checked />
+              <span data-i18n="cards.speedtest">Speedtest</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="disks" checked />
+              <span data-i18n="cards.disks">Disks</span>
+            </label>
+
+            <label class="cards-panel__row">
+              <input type="checkbox" data-card-toggle="raw" checked />
+              <span data-i18n="cards.raw">Raw</span>
+            </label>
+          </div>
+
+          <!-- Panel actions -->
+          <div class="cards-panel__actions">
+            <button id="cardsAllBtn" class="btn btn-primary" type="button" data-i18n="cards.all">All</button>
+            <button id="cardsNoneBtn" class="btn" type="button" data-i18n="cards.none">None</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="container">
+    <!-- Dashboard grid -->
+    <section class="dashboard-grid">
+
+      <!-- Card: Hero (Summary) -->
+      <div class="card card-hero span-1" data-card="summary" data-card-id="summary">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="summary.title">System Summary</h2>
+          <span class="badge badge-primary mono" id="summaryBadge">—</span>
+          <span class="badge mono" id="fullestBadge">—</span>
+        </div>
+
+        <div class="metric-group">
+          <div class="metric-item">
+            <div class="metric-value" id="heroCpuUtil">—</div>
+            <div class="metric-label" data-i18n="summary.cpuUtil">CPU Usage</div>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-value" id="heroCpuTemp">—</div>
+            <div class="metric-label" data-i18n="summary.cpuTemp">CPU Temp</div>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-value" id="heroRamFree">—</div>
+            <div class="metric-label" data-i18n="summary.ramFree">Free RAM</div>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-value" id="heroOs">—</div>
+            <div class="metric-label" data-i18n="summary.osDistro">OS / Distro</div>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-value" id="uptimePill">—</div>
+            <div class="metric-label" data-i18n="summary.uptime">Uptime</div>
+          </div>
+
+          <div class="metric-item" style="margin-left: auto;">
+            <div class="metric-value" id="fullestDisk">—</div>
+            <div class="metric-label" data-i18n="summary.diskRotating">Disk (rotating)</div>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-value" id="fullestPct">—</div>
+            <div class="metric-label" data-i18n="summary.usage">Usage</div>
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-value" id="fullestFree">—</div>
+            <div class="metric-label" data-i18n="summary.freeSpace">Free space</div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-info">
+            <span data-i18n="summary.selectedDiskUsage">Selected disk usage</span>
+            <span class="mono" id="fullestLine">—</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="fullestBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: System info -->
+      <div class="card span-2" data-card="system" data-card-id="system">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="system.title">System</h2>
+          <span
+            class="badge mono"
+            id="sysHost"
+            role="button"
+            tabindex="0"
+            title="System rows"
+            data-i18n-title="system.rows.openTip"
+          >—</span>
+        </div>
+
+        <div class="network-grid">
+          <div class="network-stat" data-sys-row="firmware">
+            <span class="network-label" data-i18n="system.firmware">Firmware</span>
+            <span class="network-value mono" id="sysFirmware">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="biosVersion">
+            <span class="network-label" data-i18n="system.biosVersion">BIOS</span>
+            <span class="network-value mono" id="sysBiosVer">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="biosDate">
+            <span class="network-label" data-i18n="system.biosDate">BIOS Date</span>
+            <span class="network-value mono" id="sysBiosDate">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="manufacturer">
+            <span class="network-label" data-i18n="system.manufacturer">Manufacturer</span>
+            <span class="network-value mono" id="sysManufacturer">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="product">
+            <span class="network-label" data-i18n="system.productName">Product Name</span>
+            <span class="network-value mono" id="sysProductName">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="systemversion">
+            <span class="network-label" data-i18n="system.systemVersion">System Version</span>
+            <span class="network-value mono" id="sysSystemVersion">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="serial">
+            <span class="network-label" data-i18n="system.serialNo">Serial No</span>
+            <span class="network-value mono" id="sysSerialNo">—</span>
+          </div>
+
+          <div class="network-stat" id="batteryBlock" data-sys-row="battery">
+            <span class="network-label" data-i18n="system.battery">Battery</span>
+            <span class="network-value mono" id="sysBattery">—</span>
+          </div>
+
+          <div class="network-stat" id="acBlock" data-sys-row="ac">
+            <span class="network-label" data-i18n="system.ac">AC</span>
+            <span class="network-value mono" id="sysAc">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="os">
+            <span class="network-label" data-i18n="system.os">OS / Distro</span>
+            <span class="network-value mono" id="sysOs">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="kernel">
+            <span class="network-label" data-i18n="system.kernel">Kernel</span>
+            <span class="network-value mono" id="sysKernel">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="arch">
+            <span class="network-label" data-i18n="system.arch">Arch</span>
+            <span class="network-value mono" id="sysArch">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="desktop">
+            <span class="network-label" data-i18n="system.desktop">Desktop</span>
+            <span class="network-value mono" id="sysDesktop">—</span>
+          </div>
+
+          <div class="network-stat" data-sys-row="session">
+            <span class="network-label" data-i18n="system.session">Session</span>
+            <span class="network-value mono" id="sysSession">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: CPU -->
+      <div class="card span-3" data-card="cpu" data-card-id="cpu">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="cards.cpu">CPU</h2>
+          <div class="flex gap-2 items-center">
+            <span class="badge mono" id="cpuBadge">—</span>
+            <span class="badge badge-success" id="cpuHeatBadge">OK</span>
+          </div>
+        </div>
+
+        <div class="metric-group">
+          <div class="metric-item">
+            <div class="metric-value" id="cpuTemp">—</div>
+            <div class="metric-label" data-i18n="cpu.temp">Temperature</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value" id="cpuLoad">—</div>
+            <div class="metric-label" data-i18n="cpu.load">Load (1/5/15)</div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-info">
+            <span data-i18n="cpu.loadPerCore">Load / core</span>
+            <span class="mono" id="cpuLoadPct">—</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="cpuBar"></div>
+          </div>
+        </div>
+
+        <div class="sparkline-container">
+          <div class="progress-info">
+            <span data-i18n="cpu.historyTitle">CPU Load History</span>
+            <span class="mono" id="cpuSparkVal">—</span>
+          </div>
+          <div class="sparkline">
+            <svg viewBox="0 0 100 44" preserveAspectRatio="none">
+              <path id="cpuSpark" d="" fill="none" stroke="var(--chart-cpu)" stroke-width="2" opacity="0.95" stroke-dasharray="3 2"></path>
+              <path id="cpuSpark5" d="" fill="none" stroke="var(--chart-cpu2)" stroke-width="2" opacity="0.85" stroke-dasharray="3 2"></path>
+              <path id="cpuSpark15" d="" fill="none" stroke="var(--chart-cpu3)" stroke-width="2" opacity="0.75" stroke-dasharray="4 3"></path>
+              <path id="cpuUtilSpark" d="" class="spark spark--util" stroke="var(--chart-cpu4)" stroke-width="1.5" opacity="0.9"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: GPU -->
+      <div class="card span-4" data-card="gpu" data-card-id="gpu">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="cards.gpu">GPU</h2>
+          <span class="badge mono" id="gpuBadge">—</span>
+        </div>
+
+        <div class="metric-group">
+          <div class="metric-item">
+            <div class="metric-value" id="gpuTemp">—</div>
+            <div class="metric-label" data-i18n="gpu.temp">Temperature</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value" id="gpuUtil">—</div>
+            <div class="metric-label" data-i18n="gpu.util">Usage</div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-info">
+            <span data-i18n="gpu.utilBar">GPU Util</span>
+            <span class="mono" id="gpuUtilPct">—</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="gpuUtilBar"></div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-info">
+            <span data-i18n="gpu.vram">VRAM</span>
+            <span class="mono" id="gpuMemLine">—</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="gpuMemBar"></div>
+          </div>
+        </div>
+
+        <div class="sparkline-container">
+          <div class="progress-info">
+            <span class="mono" id="gpuSparkVal">—</span>
+          </div>
+          <div class="sparkline">
+            <svg viewBox="0 0 100 44" preserveAspectRatio="none">
+              <path id="gpuSpark" d="" fill="none" stroke="var(--chart-gpu)" stroke-width="2" opacity="0.95"></path>
+              <path id="gpuVramSpark" d="" fill="none" stroke="var(--chart-vram)" stroke-width="2" opacity="0.85"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="progress-info mt-2">
+          <span class="text-muted" data-i18n="gpu.power">Power</span>
+          <span class="mono" id="gpuPower">—</span>
+        </div>
+      </div>
+
+      <!-- Card: RAM -->
+      <div class="card span-5" data-card="ram" data-card-id="ram">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="cards.ram">RAM</h2>
+          <span class="badge mono" id="ramBadge">—</span>
+        </div>
+
+        <div class="metric-group">
+          <div class="metric-item">
+            <div class="metric-value" id="ramUsed">—</div>
+            <div class="metric-label" data-i18n="ram.used">Used</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value" id="ramFree">—</div>
+            <div class="metric-label" data-i18n="ram.free">Free</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-value" id="ramTotal">—</div>
+            <div class="metric-label" data-i18n="ram.total">Total</div>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-info">
+            <span data-i18n="ram.usage">Usage</span>
+            <span class="mono" id="ramPct">—</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" id="ramBar"></div>
+          </div>
+        </div>
+
+        <div class="sparkline-container">
+          <div class="progress-info">
+            <span data-i18n="ram.historyTitle">RAM (GiB) History</span>
+            <span class="mono" id="ramSparkVal">—</span>
+          </div>
+
+          <div class="sparkline">
+            <svg viewBox="0 0 100 44" preserveAspectRatio="none">
+              <path id="ramUsedSpark" d="" fill="none" stroke="var(--chart-ram-used)" stroke-width="2" opacity="0.95"></path>
+              <path id="ramFreeSpark" d="" fill="none" stroke="var(--chart-ram-free)" stroke-width="2" opacity="0.85"></path>
+              <path id="swapSpark" d="" fill="none" stroke="var(--chart-swap)" stroke-width="2" opacity="0.75" stroke-dasharray="4 3"></path>
+            </svg>
+          </div>
+
+          <div class="progress-info mt-2">
+            <span class="mono" id="ramSparkHint">—</span>
+            <span class="mono" id="swapSparkVal" style="margin-left:12px;">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Network -->
+      <div class="card span-6" data-card="net" data-card-id="net">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="net.title">Network</h2>
+          <span class="badge mono" id="netBadge">—</span>
+        </div>
+
+        <div class="network-grid">
+          <div class="network-stat">
+            <span class="network-label" data-i18n="net.iface">Interface</span>
+            <span class="network-value mono" id="netIface">—</span>
+          </div>
+          <div class="network-stat">
+            <span class="network-label" data-i18n="net.ip">IP</span>
+            <span class="network-value mono" id="netIp">—</span>
+          </div>
+          <div class="network-stat">
+            <span class="network-label" data-i18n="net.down">Download</span>
+            <span class="network-value mono" id="netDown">—</span>
+          </div>
+          <div class="network-stat">
+            <span class="network-label" data-i18n="net.up">Upload</span>
+            <span class="network-value mono" id="netUp">—</span>
+          </div>
+        </div>
+
+        <div class="sparkline-container">
+          <div class="progress-info">
+            <span data-i18n="net.traffic">Network Traffic</span>
+            <span class="mono" id="netSparkVal">—</span>
+          </div>
+
+          <div class="sparkline">
+            <svg viewBox="0 0 100 36" preserveAspectRatio="none">
+              <path id="netDownSpark" d="" fill="none" stroke="var(--chart-net-down)" stroke-width="2" opacity="0.95"></path>
+              <path id="netUpSpark" d="" fill="none" stroke="var(--chart-net-up)" stroke-width="2" opacity="0.85"></path>
+            </svg>
+          </div>
+
+          <div class="progress-info mt-2">
+            <span class="mono" id="netSpeedLine">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Speedtest -->
+      <div class="card span-7" data-card="speedtest" data-card-id="speedtest">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="speedtest.title">Speedtest</h2>
+          <div class="flex gap-2 items-center">
+            <!-- Speedtest history button -->
+            <button id="stHistBtn" class="icon-btn" type="button" aria-label="History" data-i18n-title="speedtest.history.openTip">
+              <svg viewBox="0 0 24 24" class="icon" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 3-6.7" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M3 4v6h6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 7v6l4 2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <span class="badge mono" id="stRunner">—</span>
+          </div>
+        </div>
+
+        <!-- Speedtest: Normal view -->
+        <div id="stNormalView">
+          <div class="network-grid">
+            <div class="network-stat">
+              <span class="network-label" data-i18n="speedtest.ping">Ping</span>
+              <span class="network-value mono" id="stPing">—</span>
+            </div>
+            <div class="network-stat">
+              <span class="network-label" data-i18n="speedtest.jitter">Jitter</span>
+              <span class="network-value mono" id="stJitter">—</span>
+            </div>
+            <div class="network-stat">
+              <span class="network-label" data-i18n="speedtest.download">Download</span>
+              <span class="network-value mono" id="stDown">—</span>
+            </div>
+            <div class="network-stat">
+              <span class="network-label" data-i18n="speedtest.upload">Upload</span>
+              <span class="network-value mono" id="stUp">—</span>
+            </div>
+          </div>
+
+          <!-- Speedtest: Last run -->
+          <div class="progress-info mt-2">
+            <span class="text-muted" data-i18n="speedtest.lastRun">Last run</span>
+            <span class="mono" id="stLast">—</span>
+          </div>
+
+          <!-- Speedtest: Controls -->
+          <div class="controls" style="margin-top: 10px; gap: 8px;">
+            <!-- Speedtest: Interval select -->
+            <div class="input-group history-group" style="min-width: 140px;">
+              <div class="select-wrapper">
+                <select id="stInterval" aria-label="Speedtest interval">
+                  <option value="0" data-i18n="speedtest.interval.off">Off</option>
+                  <option value="15" data-i18n="speedtest.interval.15m">15m</option>
+                  <option value="30" data-i18n="speedtest.interval.30m">30m</option>
+                  <option value="60" data-i18n="speedtest.interval.1h">1h</option>
+                  <option value="360" data-i18n="speedtest.interval.6h">6h</option>
+                  <option value="1440" data-i18n="speedtest.interval.24h">24h</option>
+                </select>
+                <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Speedtest: Run now -->
+            <button id="stRunBtn" class="btn btn-primary" type="button" data-i18n="speedtest.run">
+              Run now
+            </button>
+          </div>
+
+          <!-- Speedtest: Next run -->
+          <div class="progress-info mt-2">
+            <span class="text-muted" data-i18n="speedtest.next">Next</span>
+            <span class="mono" id="stNext">—</span>
+          </div>
+
+          <!-- Speedtest: Status -->
+          <div class="progress-info mt-2">
+            <span class="text-muted" data-i18n="speedtest.status">Status</span>
+            <span class="mono" id="stStatus">—</span>
+          </div>
+        </div>
+
+        <!-- Speedtest: Running view -->
+        <div id="stRunningView" class="st-running">
+          <div class="st-running-top">
+            <div class="st-running-badges">
+              <span class="badge mono" id="stPingBadge">—</span>
+              <span class="badge mono" id="stJitterBadge">—</span>
+            </div>
+          </div>
+
+          <div class="st-gauges">
+            <!-- Gauge: Download -->
+            <div class="st-gauge">
+              <div class="st-gauge-title" data-i18n="speedtest.download">Download</div>
+
+              <div class="gauge">
+                <svg class="gauge-svg gauge-down" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+                  <path class="gauge-track" d="M10 50 A40 40 0 0 1 90 50"></path>
+                  <path class="gauge-fill" id="stDownFill" d="M10 50 A40 40 0 0 1 90 50"></path>
+
+                  <g class="gauge-needle-wrap" id="stDownNeedle" transform="rotate(0 50 50)">
+                    <line class="gauge-needle" x1="50" y1="50" x2="18" y2="50"></line>
+                  </g>
+                  <circle class="gauge-cap" cx="50" cy="50" r="3"></circle>
+                </svg>
+
+                <div class="gauge-value mono" id="stDownGaugeVal">—</div>
+                <div class="gauge-sub mono" id="stDownGaugeMax">0 — Mbps</div>
+              </div>
+            </div>
+
+            <!-- Gauge: Upload -->
+            <div class="st-gauge">
+              <div class="st-gauge-title" data-i18n="speedtest.upload">Upload</div>
+
+              <div class="gauge">
+                <svg class="gauge-svg gauge-up" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+                  <path class="gauge-track" d="M10 50 A40 40 0 0 1 90 50"></path>
+                  <path class="gauge-fill" id="stUpFill" d="M10 50 A40 40 0 0 1 90 50"></path>
+
+                  <g class="gauge-needle-wrap" id="stUpNeedle" transform="rotate(0 50 50)">
+                    <line class="gauge-needle" x1="50" y1="50" x2="18" y2="50"></line>
+                  </g>
+                  <circle class="gauge-cap" cx="50" cy="50" r="3"></circle>
+                </svg>
+
+                <div class="gauge-value mono" id="stUpGaugeVal">—</div>
+                <div class="gauge-sub mono" id="stUpGaugeMax">0 — Mbps</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Disks (injected/managed elsewhere) -->
+      <div id="disksAnchor" class="card span-8" data-card="disks" style="display:none;"></div>
+
+      <!-- Card: Raw JSON -->
+      <div class="card span-12" data-card="raw" data-card-id="raw">
+        <div class="card-header">
+          <!-- Drag handle -->
+          <button
+              class="drag-handle"
+              type="button"
+              aria-label="Drag to reorder"
+              title="Drag to reorder"
+              data-i18n-title="spark.options.dragReorder"
+            >
+            <svg class="icon icon-grip" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4"  y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="2"  width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="2"  width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="9" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="9" width="4" height="4" rx="0.6"></rect>
+
+              <rect x="4"  y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="10.5" y="16" width="4" height="4" rx="0.6"></rect>
+              <rect x="17" y="16" width="4" height="4" rx="0.6"></rect>
+            </svg>
+          </button>
+
+          <h2 class="card-title" data-i18n="raw.title">Raw JSON</h2>
+          <span class="badge mono">/stats</span>
+        </div>
+
+        <!-- Raw JSON toggle -->
+        <details id="rawDetails">
+          <summary class="raw-toggle">
+            <span class="text-muted mono" id="rawHint">hidden</span>
+          </summary>
+          <div class="raw-content">
+            <pre id="raw" class="mono"></pre>
+          </div>
+        </details>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Modal: Speedtest history -->
+  <div id="stHistModal" class="modal is-hidden" role="dialog" aria-modal="true" aria-label="Speedtest history">
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__panel">
+      <div class="modal__head">
+        <div class="modal__title" data-i18n="speedtest.history.title">Speedtest (24h)</div>
+        <button class="modal__close" type="button" data-close="1" aria-label="Close">✕</button>
+      </div>
+      <div class="modal__body">
+        <div class="st-hist-grid">
+          <!-- History: Ping -->
+          <div class="st-hist-card">
+            <div class="st-hist-label" data-i18n="speedtest.ping">Ping</div>
+            <svg id="stHistPing" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+          <!-- History: Jitter -->
+          <div class="st-hist-card">
+            <div class="st-hist-label" data-i18n="speedtest.jitter">Jitter</div>
+            <svg id="stHistJitter" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+          <!-- History: Download -->
+          <div class="st-hist-card">
+            <div class="st-hist-label" data-i18n="speedtest.download">Download</div>
+            <svg id="stHistDown" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+          <!-- History: Upload -->
+          <div class="st-hist-card">
+            <div class="st-hist-label" data-i18n="speedtest.upload">Upload</div>
+            <svg id="stHistUp" viewBox="0 0 100 32" preserveAspectRatio="none"></svg>
+          </div>
+        </div>
+        <!-- History: Footer hint -->
+        <div class="st-hist-foot mono" id="stHistHint">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: System rows (portal) -->
+  <div id="sysRowsPanel" class="cards-panel is-hidden" role="dialog" aria-label="System rows">
+    <div class="cards-panel__title" data-i18n="system.rows.title">System rows</div>
+
+    <div class="cards-panel__grid">
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="firmware" checked />
+        <span data-i18n="system.firmware">Firmware</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="biosVersion" checked />
+        <span data-i18n="system.biosVersion">BIOS</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="biosDate" checked />
+        <span data-i18n="system.biosDate">BIOS Date</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="manufacturer" checked />
+        <span data-i18n="system.manufacturer">Manufacturer</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="product" checked />
+        <span data-i18n="system.productName">Product Name</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="systemversion" checked />
+        <span data-i18n="system.systemVersion">System Version</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="serial" checked />
+        <span data-i18n="system.serialNo">Serial No</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="battery" checked />
+        <span data-i18n="system.battery">Battery</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="ac" checked />
+        <span data-i18n="system.ac">AC</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="os" checked />
+        <span data-i18n="system.os">OS / Distro</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="kernel" checked />
+        <span data-i18n="system.kernel">Kernel</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="arch" checked />
+        <span data-i18n="system.arch">Arch</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="desktop" checked />
+        <span data-i18n="system.desktop">Desktop</span>
+      </label>
+
+      <label class="cards-panel__row">
+        <input type="checkbox" data-sys-toggle="session" checked />
+        <span data-i18n="system.session">Session</span>
+      </label>
+    </div>
+
+    <!-- Panel actions -->
+    <div class="cards-panel__actions">
+      <button id="sysRowsAllBtn" class="btn btn-primary" type="button" data-i18n="cards.all">All</button>
+      <button id="sysRowsNoneBtn" class="btn" type="button" data-i18n="cards.none">None</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="./vendor/sortable.min.js" defer></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

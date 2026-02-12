@@ -1,0 +1,54 @@
+services:
+  argussys:
+    container_name: argussys
+    build: .
+
+    # If you need host-level visibility (e.g. /proc, /sys), you may enable these.
+    # Remove them if you prefer a stricter container.
+    privileged: true
+    pid: host
+    network_mode: host
+
+    working_dir: /app
+    command: ["node", "stats-api.js"]
+
+    # NVIDIA (optional). If you do not have NVIDIA, remove the gpus + NVIDIA_* env vars.
+    # gpus: all
+
+    environment:
+      TZ: Europe/Istanbul
+      PORT: "3012"
+
+      # Comma-separated list of mountpoints the API should report (df).
+      # IMPORTANT: if running in a container, each path here must be mounted into the container.
+      DISK_PATHS: "/host"
+
+      # UI
+      UI_DIR: "/app/ui"
+      UI_INDEX: "index.html"
+
+      # NVIDIA runtime hints (optional)
+      # NVIDIA_VISIBLE_DEVICES: "all"
+      # NVIDIA_DRIVER_CAPABILITIES: "compute,utility,video"
+
+      # Speedtest
+      SPEEDTEST_TIMEOUT_MS: "120000"
+      SPEEDTEST_INTERVAL_MIN: "0"          # 0 = disabled (manual only)
+      SPEEDTEST_RUN_ON_START: "1"          # 1 = run once on startup
+      SPEEDTEST_STATE_FILE: "/app/data/speedtest-state.json"
+
+      # History
+      HISTORY_MAX_MIN: "120"
+
+    volumes:
+      # Host visibility (optional)
+      - /sys:/sys:ro
+      - /:/host:ro
+
+      # Persist app data
+      - ./data:/app/data
+
+      # Serve UI from repo
+      - ./ui:/app/ui:ro
+
+    restart: unless-stopped
